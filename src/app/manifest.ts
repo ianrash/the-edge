@@ -9,7 +9,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description:
       "Track. Learn. Improve. Your AI trading journal with deep stats, rule tracking, and a personal coach.",
     id: "/",
-    start_url: "/",
+    start_url: "/dashboard",
     scope: "/",
     display: "standalone",
     orientation: "portrait",
