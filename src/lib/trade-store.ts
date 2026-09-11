@@ -12,7 +12,7 @@ export function getStoredTrades(): Trade[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return INITIAL_TRADES;
-    return JSON.parse(raw).filter((t) => t && typeof t === "object");
+    return JSON.parse(raw).filter((t: unknown) => t && typeof t === "object") as Trade[];
   } catch (e) {
     console.error("Error reading trades from localStorage:", e);
     return INITIAL_TRADES;
