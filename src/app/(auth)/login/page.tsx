@@ -16,7 +16,8 @@ function LoginForm() {
   const next = searchParams.get("next") ?? "/dashboard";
 
   const [error, setError] = useState<string | null>(
-    searchParams.get("error") ?? null,
+    searchParams.get("error") ??
+      (searchParams.get("debug") ? `Debug: ${searchParams.get("debug")}` : null),
   );
   const [isPending, startTransition] = useTransition();
 

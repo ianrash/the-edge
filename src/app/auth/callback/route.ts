@@ -17,7 +17,14 @@ export async function GET(request: Request) {
       }
       return NextResponse.redirect(`${origin}${next}`);
     }
+    // Surface the real Supabase error so callbacks can be diagnosed.
+    const reason = encodeURIComponent(
+      `${error.name}: ${error.message} (${error.code ?? ""})`
+    );
+    return NextResponse.redirect(
+      `${origin}/login?error=OAuth callback failed&debug=${reason}`
+    );
   }
 
-  return NextResponse.redirect(`${origin}/login?error=OAuth callback failed`);
+  return NextResponse.redirect(`${origin}/login?error=OAuth callback failed&debug=no%20code`);
 }
