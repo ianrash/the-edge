@@ -6,6 +6,7 @@ import { Suspense, useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Card, CardContent } from "@/components/ui/card";
 import { GoogleIcon } from "@/components/ui/google-icon";
 import { signupAction, signInWithGoogleAction } from "@/lib/auth/actions";
 
@@ -102,19 +103,21 @@ function SignupForm() {
             className="h-11 bg-card text-base sm:text-sm"
           />
         </div>
-        <div className="grid gap-2">
-          <Label htmlFor="password">Password</Label>
-          <Input id="password" name="password" type="password" required className="h-11 bg-card text-base sm:text-sm" />
-        </div>
-        <div className="grid gap-2">
-          <Label htmlFor="confirm-password">Confirm Password</Label>
-          <Input
-            id="confirm-password"
-            name="confirm-password"
-            type="password"
-            required
-            className="h-11 bg-card text-base sm:text-sm"
-          />
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="grid gap-2">
+            <Label htmlFor="password">Password</Label>
+            <Input id="password" name="password" type="password" required className="h-11 bg-card text-base sm:text-sm" />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="confirm-password">Confirm Password</Label>
+            <Input
+              id="confirm-password"
+              name="confirm-password"
+              type="password"
+              required
+              className="h-11 bg-card text-base sm:text-sm"
+            />
+          </div>
         </div>
 
         {error && (
@@ -138,7 +141,7 @@ function SignupForm() {
 
 export default function SignupPage() {
   return (
-    <div className="mx-auto grid w-full max-w-[420px] gap-6">
+    <div className="mx-auto grid w-full max-w-[440px] gap-6">
       <div className="grid gap-2 text-center">
         <h1 className="text-3xl font-bold tracking-tight">Create your account</h1>
         <p className="text-balance text-muted-foreground">
@@ -147,7 +150,11 @@ export default function SignupPage() {
       </div>
 
       <Suspense fallback={null}>
-        <SignupForm />
+        <Card className="w-full">
+          <CardContent className="grid gap-5">
+            <SignupForm />
+          </CardContent>
+        </Card>
       </Suspense>
 
       <p className="text-center text-sm">

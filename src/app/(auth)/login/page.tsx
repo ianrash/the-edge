@@ -6,6 +6,7 @@ import { Suspense, useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Card, CardContent } from "@/components/ui/card";
 import { GoogleIcon } from "@/components/ui/google-icon";
 import { loginAction, signInWithGoogleAction } from "@/lib/auth/actions";
 
@@ -102,7 +103,7 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="mx-auto grid w-full max-w-[420px] gap-6">
+    <div className="mx-auto grid w-full max-w-[440px] gap-6">
       <div className="grid gap-2 text-center">
         <h1 className="text-3xl font-bold tracking-tight">Welcome back</h1>
         <p className="text-balance text-muted-foreground">
@@ -112,7 +113,11 @@ export default function LoginPage() {
 
       {/* Google OAuth requires useSearchParams -> suspend */}
       <Suspense fallback={null}>
-        <LoginForm />
+        <Card className="w-full">
+          <CardContent className="grid gap-5">
+            <LoginForm />
+          </CardContent>
+        </Card>
       </Suspense>
 
       <p className="text-center text-sm">

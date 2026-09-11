@@ -52,12 +52,12 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       </div>
 
       {/* Mobile / form panel */}
-      <main className="relative flex min-h-dvh w-full flex-col items-center justify-center gap-8 px-4 py-10 sm:px-6">
+      <main className="relative flex min-h-dvh w-full flex-col items-center justify-center gap-8 overflow-hidden px-4 py-10 sm:px-6">
         <div aria-hidden className="pointer-events-none absolute inset-0 lg:hidden">
           <div className="absolute -top-32 left-1/2 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-primary/10 blur-[110px]" />
         </div>
 
-        <div className="relative z-10">
+        <div className="relative z-10 w-full">
           <div className="lg:hidden flex flex-col items-center gap-3 text-center">
             <Image
               src="/logo.png"
@@ -72,7 +72,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             </div>
           </div>
 
-          <div className="mt-8 lg:mt-0">
+          <div className="mt-8 w-full lg:mt-0">
             {children}
           </div>
 
