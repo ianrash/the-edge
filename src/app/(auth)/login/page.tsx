@@ -12,7 +12,7 @@ import { loginAction, signInWithGoogleAction } from "@/lib/auth/actions";
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const next = searchParams.get("next") ?? "/";
+  const next = searchParams.get("next") ?? "/dashboard";
 
   const [error, setError] = useState<string | null>(
     searchParams.get("error") ?? null,
@@ -106,7 +106,7 @@ export default function LoginPage() {
       <div className="grid gap-2 text-center">
         <h1 className="text-3xl font-bold tracking-tight">Welcome back</h1>
         <p className="text-balance text-muted-foreground">
-          Enter your email below to login to your account
+          Log in to keep building your edge
         </p>
       </div>
 
@@ -118,7 +118,7 @@ export default function LoginPage() {
       <p className="text-center text-sm">
         Don&apos;t have an account?{" "}
         <Link href="/signup" className="underline text-primary">
-          Sign up
+          Sign up free
         </Link>
       </p>
     </div>

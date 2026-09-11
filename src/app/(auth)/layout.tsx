@@ -1,47 +1,87 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeft, TrendingUp, ShieldCheck, BrainCircuit } from "lucide-react";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="w-full lg:grid lg:grid-cols-2 lg:min-h-dvh">
+    <div className="relative w-full lg:grid lg:grid-cols-2 lg:min-h-dvh">
       {/* Desktop brand panel */}
-      <div className="hidden lg:block relative overflow-hidden bg-muted">
-        <div className="absolute inset-0 bg-background/90 z-10" />
-        <div className="absolute inset-0 z-20 flex flex-col justify-center p-12 text-foreground">
-          <div className="flex items-center gap-4 mb-8">
-            <Image src="/logo.png" alt="The Edge Logo" width={48} height={48} className="h-12 w-12 rounded-lg object-contain shadow-lg shadow-primary/20" />
-            <h1 className="text-3xl font-bold tracking-tight">THE EDGE</h1>
-          </div>
-          <h2 className="text-4xl font-semibold mb-4">TRADING JOURNAL</h2>
-          <p className="text-muted-foreground text-xl max-w-[400px]">
-            &ldquo;Discipline today. Freedom tomorrow.&rdquo;
-          </p>
+      <div className="relative hidden lg:block overflow-hidden border-r border-border bg-card/40">
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-32 left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]" />
+          <div className="absolute bottom-[-15%] right-[-10%] h-[400px] w-[400px] rounded-full bg-chart-2/10 blur-[110px]" />
         </div>
-        <Image
-          src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop"
-          alt="Trading Chart"
-          fill
-          priority
-          sizes="50vw"
-          className="object-cover opacity-20 z-0 grayscale"
-        />
+        <div className="relative z-10 flex flex-col justify-between p-12 text-foreground">
+          <Link href="/" className="group inline-flex w-fit items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
+            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+            Back to home
+          </Link>
+
+          <div className="mt-auto pt-16">
+            <div className="flex items-center gap-4">
+              <Image src="/logo.png" alt="The Edge Logo" width={56} height={56} className="h-14 w-14 rounded-xl object-contain shadow-lg shadow-primary/20" />
+              <div>
+                <h1 className="text-2xl font-bold tracking-tight">THE EDGE</h1>
+                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Trading Journal</p>
+              </div>
+            </div>
+            <h2 className="mt-12 max-w-md text-4xl font-semibold leading-tight tracking-tight text-balance">
+              Your journal is your edge.
+            </h2>
+            <p className="mt-4 max-w-md text-lg text-muted-foreground">
+              &ldquo;Discipline today. Freedom tomorrow.&rdquo;
+            </p>
+
+            <div className="mt-10 grid grid-cols-3 gap-3">
+              {[
+                { icon: BrainCircuit, label: "AI coach" },
+                { icon: TrendingUp, label: "Deep stats" },
+                { icon: ShieldCheck, label: "Rule tracking" },
+              ].map((b) => {
+                const Icon = b.icon;
+                return (
+                  <div key={b.label} className="flex flex-col items-center gap-2 rounded-xl border border-border bg-background/60 px-3 py-4 text-center">
+                    <Icon className="h-5 w-5 text-primary" />
+                    <span className="text-xs text-muted-foreground">{b.label}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Mobile / form panel */}
-      <main className="flex min-h-dvh w-full flex-col items-center justify-center gap-8 px-4 py-10 sm:px-6">
-        <div className="lg:hidden flex flex-col items-center gap-3 text-center">
-          <Image
-            src="/logo.png"
-            alt="The Edge Logo"
-            width={56}
-            height={56}
-            className="h-14 w-14 rounded-xl object-contain shadow-lg shadow-primary/20"
-          />
-          <div>
-            <div className="text-2xl font-bold tracking-tight">THE EDGE</div>
-            <p className="text-sm text-muted-foreground">&ldquo;Discipline today. Freedom tomorrow.&rdquo;</p>
-          </div>
+      <main className="relative flex min-h-dvh w-full flex-col items-center justify-center gap-8 px-4 py-10 sm:px-6">
+        <div aria-hidden className="pointer-events-none absolute inset-0 lg:hidden">
+          <div className="absolute -top-32 left-1/2 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-primary/10 blur-[110px]" />
         </div>
-        {children}
+
+        <div className="relative z-10">
+          <div className="lg:hidden flex flex-col items-center gap-3 text-center">
+            <Image
+              src="/logo.png"
+              alt="The Edge Logo"
+              width={56}
+              height={56}
+              className="h-14 w-14 rounded-xl object-contain shadow-lg shadow-primary/20"
+            />
+            <div>
+              <div className="text-2xl font-bold tracking-tight">THE EDGE</div>
+              <p className="text-sm text-muted-foreground">&ldquo;Discipline today. Freedom tomorrow.&rdquo;</p>
+            </div>
+          </div>
+
+          <div className="mt-8 lg:mt-0">
+            {children}
+          </div>
+
+          <p className="mt-8 text-center text-sm text-muted-foreground">
+            <Link href="/" className="text-muted-foreground underline-offset-4 hover:text-foreground hover:underline">
+              &larr; Back to home
+            </Link>
+          </p>
+        </div>
       </main>
     </div>
   );

@@ -21,7 +21,7 @@ import { signOutAction } from "@/lib/auth/actions";
 import { cn } from "cn";
 
 const navLinks = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/journal", label: "Journal", icon: BookOpen },
   { href: "/import", label: "Import Trades", icon: FileSpreadsheet },
   { href: "/calendar", label: "Calendar", icon: Calendar },
@@ -78,8 +78,7 @@ function NavList({
   className?: string;
 }) {
   const pathname = usePathname();
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = (href: string) => pathname.startsWith(href);
 
   return (
     <nav className={cn("flex flex-col gap-2", className)}>

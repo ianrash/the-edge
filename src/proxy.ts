@@ -40,7 +40,7 @@ export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const isAuthPage = path.startsWith("/login") || path.startsWith("/signup");
   const isProtected =
-    path === "/" ||
+    path === "/dashboard" ||
     ["/journal", "/import", "/calendar", "/analytics", "/settings"].some((p) =>
       path.startsWith(p)
     );
@@ -57,7 +57,7 @@ export async function proxy(request: NextRequest) {
   if (user && isAuthPage) {
     const url = request.nextUrl.clone();
     url.searchParams.delete("next");
-    url.pathname = "/";
+    url.pathname = "/dashboard";
     return NextResponse.redirect(url);
   }
 

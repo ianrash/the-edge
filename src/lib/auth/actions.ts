@@ -49,9 +49,9 @@ export async function loginAction(formData: FormData): Promise<
 
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
-  const next = String(formData.get("next") ?? "/").startsWith("/")
+  const next = String(formData.get("next") ?? "/dashboard").startsWith("/")
     ? String(formData.get("next"))
-    : "/";
+    : "/dashboard";
 
   if (!email || !password) {
     return { error: "Email and password are required." };
@@ -79,7 +79,7 @@ export async function signupAction(formData: FormData): Promise<
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
   const confirm = String(formData.get("confirm-password") ?? "");
-  const next = String(formData.get("next") ?? "/").startsWith("/") ? String(formData.get("next")) : "/";
+  const next = String(formData.get("next") ?? "/dashboard").startsWith("/") ? String(formData.get("next")) : "/dashboard";
 
   if (!name || !email || !password) {
     return { error: "Name, email and password are required." };

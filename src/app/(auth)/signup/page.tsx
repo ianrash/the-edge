@@ -12,7 +12,7 @@ import { signupAction, signInWithGoogleAction } from "@/lib/auth/actions";
 function SignupForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const next = searchParams.get("next") ?? "/";
+  const next = searchParams.get("next") ?? "/dashboard";
 
   const [message, setMessage] = useState<string | null>(
     searchParams.get("message") ?? null,
@@ -153,7 +153,7 @@ export default function SignupPage() {
       <p className="text-center text-sm">
         Already have an account?{" "}
         <Link href="/login" className="underline text-primary">
-          Login
+          Log in
         </Link>
       </p>
     </div>
